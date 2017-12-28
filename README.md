@@ -1,6 +1,6 @@
 # PyTfL
 
-###### A library for easy and intuitive maniplulation of TfL's API in Python.
+###### A Python library for easy and intuitive maniplulation of TfL's API.
 
 TODO:
 
