@@ -1,0 +1,8 @@
+# Pycharm files #
+.idea
+
+# Compiled Python files #
+*.pyc
+
+# Config file (contains sensitive data) #
+PyTfL.conf

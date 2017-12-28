@@ -1,0 +1,11 @@
+# This file must be completed in order to be run locally.
+# To obtain these credentials, register with TfL's API at
+# https://api-portal.tfl.gov.uk/signup
+# Lastly, don't forget to remove '.template' from this
+# file's name!
+
+[apiCredentials]
+app_id = <your TfL API app_id>
+app_key = <your TfL API app_key>
+
+
