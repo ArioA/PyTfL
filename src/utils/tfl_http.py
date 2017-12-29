@@ -1,7 +1,7 @@
 # ^=_ coding: utf-8 _=^
 
-from main.utils.config import PyTYfLConfig
-from main.utils import logging
+from utils.config import PyTYfLConfig
+from utils import logging
 import requests
 
 

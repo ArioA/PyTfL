@@ -1,6 +1,6 @@
 # ^=_ coding: utf-8 _=^
 
-from main.utils import utils
+from utils import utils
 
 
 class TubeLine(object):

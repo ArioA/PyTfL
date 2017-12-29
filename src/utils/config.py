@@ -1,7 +1,7 @@
 # ^=_ coding: utf-8 _=^
 
 import configparser
-from main.utils import logging
+from utils import logging
 import os.path
 
 logger = logging.getLogger(__name__)

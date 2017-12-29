@@ -1,7 +1,7 @@
 # ^=_ coding: utf-8 _=^
 
-from main.tube.tubeline import TubeLine
-from main.utils.tfl_http import TflHttp
+from tube.tubeline import TubeLine
+from utils.tfl_http import TflHttp
 
 
 class TubeNetwork(object):

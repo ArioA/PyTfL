@@ -1,7 +1,7 @@
 # ^=_ coding: utf-8 _=^
 
 import unittest
-from main.utils.tfl_http import TflHttp
+from utils.tfl_http import TflHttp
 from pprint import pprint
 
 

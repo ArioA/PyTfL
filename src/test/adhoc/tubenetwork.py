@@ -1,6 +1,6 @@
 # ^=_ coding: utf-8 _=^
 
-from main.tube.tubenetwork import TubeNetwork
+from tube.tubenetwork import TubeNetwork
 from pprint import pprint
 import unittest
 
