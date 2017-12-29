@@ -1,7 +1,10 @@
 # ^=_ coding: utf-8 _=^
 
 import configparser
+from main.utils import logging
 import os.path
+
+logger = logging.getLogger(__name__)
 
 
 class PyTYfLConfig(object):
@@ -10,10 +13,10 @@ class PyTYfLConfig(object):
     config_parser_dict = None
 
     def __init__(self):
-        self.config_dict = self.initialise_config_parser_dict()
+        config_dict = self.initialise_config_parser_dict()
 
-        self.app_id = self.config_dict['apiCredentials']['app_id']
-        self.app_key = self.config_dict['apiCredentials']['app_key']
+        self.app_id = config_dict['apiCredentials']['app_id']
+        self.app_key = config_dict['apiCredentials']['app_key']
 
         self.tfl_api_url = 'https://api.tfl.gov.uk'
 
@@ -30,6 +33,7 @@ class PyTYfLConfig(object):
 
             config_parser.read(cls.config_file_location, 'utf-8')
             cls.config_parser_dict = config_parser
+            logger.info('Initialised config from file: %s', cls.config_file_location)
 
         return cls.config_parser_dict
 

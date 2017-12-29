@@ -4,7 +4,7 @@
 
 TODO:
 
-- [ ] Logging !!!
+- [x] Logging !!!
 - [ ] TubeLines class
 - [ ] TubeStation class
 - [ ] TubeRoute class ?
