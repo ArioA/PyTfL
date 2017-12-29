@@ -23,3 +23,21 @@ class TubeLine(object):
         name_getter = utils.create_dict_getter('name')
         service_type_names = map(name_getter, service_types)
         return tuple(service_type_names)
+
+    def __str__(self):
+        return self.name
+
+    def __repr__(self):
+        repr_str_format = 'TubeLine(name={name}, ' \
+                          'id={id}, ' \
+                          'line_statuses={line_statuses}, ' \
+                          'disruptions={disruptions}, ' \
+                          'service_types={service_types}, ' \
+                          'mode_name={mode_name})'
+        repr_str = repr_str_format.format(name=self.name,
+                                          id=self.id,
+                                          line_statuses=self.line_statuses,
+                                          disruptions=self.disruptions,
+                                          service_types=self.service_types,
+                                          mode_name=self.mode_name)
+        return repr_str
