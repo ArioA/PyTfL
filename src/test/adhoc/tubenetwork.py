@@ -13,7 +13,7 @@ class TubeNetworkTest(unittest.TestCase):
 
     def test_tube_points(self):
         tube_network = TubeNetwork()
-        pprint(tube_network.get_tube_stop_points().keys())
+        pprint(tube_network.get_tube_stations())
 
 
 if __name__ == '__main__':

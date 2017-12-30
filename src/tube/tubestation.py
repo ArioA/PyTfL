@@ -13,10 +13,9 @@ class TubeStation(object):
         self.id = initialising_dict['id']
         self.lat = initialising_dict['lat']
         self.lon = initialising_dict['lon']
-        self.lon = initialising_dict['']
         self.naptan_stop_type = initialising_dict['stopType']
-        self.additional_properties = initialising_dict['additionalProperties']
-        self.children = initialising_dict['children']
+        self.additional_properties = []  # TODO: add additionalProperties key
+        self.children = []  # TODO: add children
 
     def __str__(self):
         return self.name
