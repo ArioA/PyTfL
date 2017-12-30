@@ -1,13 +1,11 @@
 # ^=_ coding: utf-8 _=^
+from utils import utils
 
 
 class TubeStation(object):
 
     def __init__(self, tube_station_dict, **kwargs):
-        if isinstance(tube_station_dict, dict):
-            initialising_dict = tube_station_dict
-        else:
-            initialising_dict = kwargs
+        initialising_dict = utils.create_initialising_dict(tube_station_dict, kwargs)
 
         self.name = initialising_dict['commonName']
         self.id = initialising_dict['id']

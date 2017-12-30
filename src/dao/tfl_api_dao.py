@@ -8,7 +8,7 @@ import requests
 logger = logging.getLogger(__name__)
 
 
-class TflHttp(object):
+class TflApiDao(object):
 
     def __init__(self):
         self.config = PyTYfLConfig()
@@ -33,6 +33,11 @@ class TflHttp(object):
         response = self.get_response_from_endpoint(endpoint)
         contents = self.get_response_contents(response)
         return contents
+
+    def get_single_line_stations(self, line_id):
+        single_line_station_endpoint = self.config.get_single_line_stations_endpoint(line_id)
+        all_stations_on_line = self.get_contents_from_endpoint(single_line_station_endpoint)
+        return all_stations_on_line
 
     def get_all_tube_lines(self):
         tube_lines_endpoint = self.config.get_tube_lines_endpoint()

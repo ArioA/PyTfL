@@ -11,7 +11,7 @@ TfL's tube network.
 
 - [ ] TubeLines class
     - [x] Basic TubeLines class
-    - [ ] Integrate TubeStations into TubeLines
+    - [x] Integrate TubeStations into TubeLines
     - [ ] Integrate TubeRoutes into TubeLines
 - [ ] TubeNetwork class
     - [ ] Rationalise what this is supposed to mean. May need to move much of the functionality found here into a DAO.

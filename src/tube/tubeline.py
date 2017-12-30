@@ -6,10 +6,7 @@ from utils import utils
 class TubeLine(object):
 
     def __init__(self, tubeline_dict, **kwargs):
-        if isinstance(tubeline_dict, dict):
-            initialising_dict = tubeline_dict
-        else:
-            initialising_dict = kwargs
+        initialising_dict = utils.create_initialising_dict(tubeline_dict, kwargs)
 
         self.name = initialising_dict['name']
         self.id = initialising_dict['id']
@@ -17,6 +14,8 @@ class TubeLine(object):
         self.disruptions = initialising_dict['disruptions']
         self.service_types = self.get_service_type(initialising_dict['serviceTypes'])
         self.mode_name = initialising_dict.get('modeName', 'tube')
+        self.tube_stations = []
+        self.tube_routes = []
 
     @staticmethod
     def get_service_type(service_types):
@@ -30,14 +29,20 @@ class TubeLine(object):
     def __repr__(self):
         repr_str_format = 'TubeLine(name={name}, ' \
                           'id={id}, ' \
+                          'tube_stations={tube_stations},' \
+                          'tube_routes={tube_routes},' \
                           'line_statuses={line_statuses}, ' \
                           'disruptions={disruptions}, ' \
                           'service_types={service_types}, ' \
                           'mode_name={mode_name})'
         repr_str = repr_str_format.format(name=self.name,
                                           id=self.id,
+                                          tube_stations=self.tube_stations,
+                                          tube_routes=self.tube_routes,
                                           line_statuses=self.line_statuses,
                                           disruptions=self.disruptions,
                                           service_types=self.service_types,
                                           mode_name=self.mode_name)
         return repr_str
+
+
