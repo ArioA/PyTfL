@@ -11,6 +11,10 @@ class TubeNetworkTest(unittest.TestCase):
         tube_network = TubeNetwork()
         pprint(tube_network.tube_lines)
 
+    def test_tube_points(self):
+        tube_network = TubeNetwork()
+        pprint(tube_network.get_tube_stop_points().keys())
+
 
 if __name__ == '__main__':
     unittest.main()

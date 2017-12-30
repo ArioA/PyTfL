@@ -38,3 +38,8 @@ class TflHttp(object):
         tube_lines_endpoint = self.config.get_tube_lines_endpoint()
         all_tube_lines = self.get_contents_from_endpoint(tube_lines_endpoint)
         return all_tube_lines
+
+    def get_all_tube_stop_points(self):
+        all_tube_stop_point_endpoints = self.config.get_tube_stop_point_endpoint()
+        all_tube_stop_points = self.get_contents_from_endpoint(all_tube_stop_point_endpoints)
+        return all_tube_stop_points

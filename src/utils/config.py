@@ -25,6 +25,7 @@ class PyTYfLConfig(object):
         self.tube_line_mode = 'tube'
 
         self.line_mode_endpoint = '/Line/Mode/{id}'
+        self.tube_stop_point_endpoint = '/StopPoint/Mode/{id}'
 
     @classmethod
     def initialise_config_parser_dict(cls):
@@ -40,6 +41,10 @@ class PyTYfLConfig(object):
     def get_tube_lines_endpoint(self):
         tube_lines_endpoint = self.line_mode_endpoint.format(id=self.tube_line_mode)
         return tube_lines_endpoint
+
+    def get_tube_stop_point_endpoint(self):
+        tube_stop_point_endpoint = self.tube_stop_point_endpoint.format(id=self.tube_line_mode)
+        return tube_stop_point_endpoint
 
     def get_full_endpoint_url(self, endpoint):
         return self.url_format.format(base_url=self.tfl_api_url, endpoint=endpoint)
