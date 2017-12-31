@@ -19,7 +19,13 @@ TfL's tube network.
     - [x] Basic TubeStation class
     - [ ] Make use of additionaProperties key - could organised them by the 'category' key.
     - [ ] Make use of children key. This can be postponed until other transport types (particularly bus) are incorporated.
+    - [ ] Entrances (NaptanMetroEntrance)
+    - [ ] Platforms (NaptanMetroPlatform)
+    - [ ] Concourses (NaptanMetroAccessArea)
 - [ ] TubeRoute class
     - [ ] Basic TubeRoute class
 
+## Further Information -
+
+- Government [**documents**](https://www.gov.uk/government/publications/national-public-transport-access-node-schema) on understanding NaPTAN
 
