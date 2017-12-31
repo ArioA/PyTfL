@@ -27,6 +27,7 @@ class PyTYfLConfig(object):
         self.line_mode_endpoint_format = '/Line/Mode/{id}'
         self.tube_stop_point_endpoint_format = '/StopPoint/Mode/{id}'
         self.single_line_tube_stations_endpoint_format = '/Line/{id}/StopPoints'
+        self.line_route_sequence_endpoint_format = '/Line/{line_id}/Route/Sequence/{direction}'
 
     @classmethod
     def initialise_config_parser_dict(cls):
@@ -53,3 +54,8 @@ class PyTYfLConfig(object):
     def get_single_line_stations_endpoint(self, line_id):
         single_line_stations_endpoint = self.single_line_tube_stations_endpoint_format.format(id=line_id)
         return single_line_stations_endpoint
+
+    def get_line_route_sequence_endpoint(self, line_id, direction='all'):
+        line_route_sequence_endpoint = self.line_route_sequence_endpoint_format.format(line_id=line_id,
+                                                                                       direction=direction)
+        return line_route_sequence_endpoint

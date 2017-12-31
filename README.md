@@ -12,9 +12,11 @@ TfL's tube network.
 - [ ] TubeLines class
     - [x] Basic TubeLines class
     - [x] Integrate TubeStations into TubeLines
-    - [ ] Integrate TubeRoutes into TubeLines
+    - [x] Integrate TubeRoutes into TubeLines
+    - [ ] Tidy up the initialisation of these classes in the DAO, Currently takes too long (~30 seconds without caching on TfL's side, ~12 seconds with).
 - [ ] TubeNetwork class
-    - [ ] Rationalise what this is supposed to mean. May need to move much of the functionality found here into a DAO.
+    - [x] Rationalise what this is supposed to mean. May need to move much of the functionality found here into a DAO.
+    - [ ] Create whole network and measure how long this takes. Optimise if necessary.
 - [ ] TubeStation class
     - [x] Basic TubeStation class
     - [ ] Make use of additionaProperties key - could organised them by the 'category' key.
@@ -22,8 +24,8 @@ TfL's tube network.
     - [ ] Entrances (NaptanMetroEntrance)
     - [ ] Platforms (NaptanMetroPlatform)
     - [ ] Concourses (NaptanMetroAccessArea)
-- [ ] TubeRoute class
-    - [ ] Basic TubeRoute class
+- [x] TubeRoute class
+    - [x] Basic TubeRoute class
 
 ## Further Information -
 
