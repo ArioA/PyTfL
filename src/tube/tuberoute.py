@@ -34,3 +34,6 @@ class TubeRoute(object):
 
     def __len__(self):
         return len(self.station_id_route_sequence)
+
+    def __getitem__(self, item):
+        return self.station_id_route_sequence[item]
