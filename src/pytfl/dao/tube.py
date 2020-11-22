@@ -17,6 +17,12 @@ def line_name_to_attr(line: str) -> str:
 
 # TODO: have an explicit list of lines
 class TubeLines(abc.Sequence):
+    """
+    Class representing all tube lines:
+
+    >>> tubelines = Tube().lines
+    >>> northern_line = tubelines.northern
+    """
     def __init__(self, tubelines: List[TubeLine]):
         self._tubelines = tubelines
         for line in tubelines:
