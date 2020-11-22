@@ -1,9 +1,9 @@
 # ^=_ coding: utf-8 _=^
 
-from pytfl.utils import utils
+from pytfl import utils
 
 
-class TubeLine(object):
+class TubeLine:
     def __init__(self, tubeline_dict, **kwargs):
         initialising_dict = utils.create_initialising_dict(tubeline_dict, kwargs)
 

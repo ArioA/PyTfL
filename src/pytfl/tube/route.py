@@ -1,10 +1,10 @@
 # ^=_ coding: utf-8 _=^
 import html
 
-from pytfl.utils import utils
+from pytfl import utils
 
 
-class TubeRoute(object):
+class TubeRoute:
     def __init__(self, tuberoute_dict, **kwargs):
         initialising_dict = utils.create_initialising_dict(tuberoute_dict, kwargs)
         self.name = html.unescape(initialising_dict["name"])

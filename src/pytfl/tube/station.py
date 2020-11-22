@@ -1,8 +1,8 @@
 # ^=_ coding: utf-8 _=^
-from pytfl.utils import utils
+from pytfl import utils
 
 
-class TubeStation(object):
+class TubeStation:
     def __init__(self, tube_station_dict, **kwargs):
         initialising_dict = utils.create_initialising_dict(tube_station_dict, kwargs)
 
