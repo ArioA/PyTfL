@@ -30,7 +30,7 @@ class TubeDao:
     def get_tube_line_stations(self, line_id):
         logger.info("Getting all stations for tube line with ID: %s", line_id)
         stations_raw = self.tfl_api_dao.get_single_line_stations(line_id)
-        stations = map(TubeStation, stations_raw)
+        stations = [TubeStation(station) for station in stations_raw]
         logger.info("Got %s stations for tube line with ID: %s", len(stations), line_id)
         return stations
 

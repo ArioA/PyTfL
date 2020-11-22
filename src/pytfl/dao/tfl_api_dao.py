@@ -50,7 +50,9 @@ class TflApiDao:
         else:
             logger.info("Non-success response: %s from URL: %s", response.status_code, response.url)
 
-    def get_contents_from_endpoint(self, endpoint, payload={}):
+    def get_contents_from_endpoint(self, endpoint, payload=None):
+        if payload is None:
+            payload = {}
         response = self.get_response_from_endpoint(endpoint, payload)
         contents = self.get_response_contents(response)
         return contents

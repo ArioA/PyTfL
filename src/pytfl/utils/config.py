@@ -1,15 +1,26 @@
 # ^=_ coding: utf-8 _=^
-
-import configparser
-from pytfl.utils import logging
+import os
 import os.path
+import configparser
+
+from pytfl.utils import logging
+
 
 logger = logging.getLogger(__name__)
 
 
+def get_config_file_location():
+    env_filename = os.environ.get("PYTFL_CONFIG")
+    if env_filename:
+        config_file_path = os.path.abspath(env_filename)
+    else:
+        config_file_path = os.path.abspath("./PyTfl.conf")
+    return config_file_path
+
+
 class PyTYfLConfig:
 
-    config_file_location = os.path.abspath("../PyTfL.conf")
+    config_file_location = get_config_file_location()
     config_parser_dict = None
 
     def __init__(self):

@@ -4,6 +4,22 @@
 
 ----------
 
+### Usage
+
+To get things up and running, you'll need to:
+ - [Register](https://api-portal.tfl.gov.uk) an app with TfL
+    - You'll need to create a product subscription under `Products -> <product name>`
+        - At the time of writing, the only product available is `500 Requests per min`
+ - Copy `PyTfL.conf.template` to a `PyTfL.conf` file, and fill in your app's details
+    - TfL's jargon for describing these keys appears to be inconsistent: 
+        - "Primary key" corresponds to `app_id`
+        - "Secondary key" to `app_key`
+ - Point the app to where this file is located by either:
+    - Setting the `PYTFL_CONFIG` environment variable to your `PyTfL.cong`'s path
+    - Being in the same directory as your `PyTfL.conf` file 
+ 
+----------
+
 #### Up+coming -
 TfL's tube network.
 

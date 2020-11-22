@@ -7,5 +7,9 @@
 # Config file (contains sensitive data) #
 PyTfL.conf
 
+# Egg directories
 *.egg*
+
+# Vim swp files
+*.swp
 
