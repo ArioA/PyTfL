@@ -85,7 +85,8 @@ class TflApiDao:
         )
         return line_all_route_station_sequences
 
-    def get_line_status(self, line_id, detail=True):
+    # `detail=True` returns some poor quality data (e.g. station lat/long is always 0.0) - avoid for now.
+    def get_line_status(self, line_id, detail=False):
         endpoint = self.get_line_status_endpoint(line_id)
         payload = {"detail": detail}
         return self.get_contents_from_endpoint(endpoint, payload)
