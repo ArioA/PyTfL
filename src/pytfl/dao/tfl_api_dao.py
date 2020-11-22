@@ -1,8 +1,8 @@
 # ^=_ coding: utf-8 _=^
-
-from utils.config import PyTYfLConfig
-from utils import logging
 import requests
+
+from pytfl.utils.config import PyTYfLConfig
+from pytfl.utils import logging
 
 
 logger = logging.getLogger(__name__)

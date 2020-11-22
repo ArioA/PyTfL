@@ -1,6 +1,7 @@
 # ^=_ coding: utf-8 _=^
 import html
-from utils import utils
+
+from pytfl.utils import utils
 
 
 class TubeRoute(object):

@@ -1,6 +1,6 @@
 # ^=_ coding: utf-8 _=^
 
-from utils import utils
+from pytfl.utils import utils
 
 
 class TubeLine(object):

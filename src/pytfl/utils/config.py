@@ -1,13 +1,13 @@
 # ^=_ coding: utf-8 _=^
 
 import configparser
-from utils import logging
+from pytfl.utils import logging
 import os.path
 
 logger = logging.getLogger(__name__)
 
 
-class PyTYfLConfig(object):
+class PyTYfLConfig:
 
     config_file_location = os.path.abspath("../PyTfL.conf")
     config_parser_dict = None
