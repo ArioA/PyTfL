@@ -10,7 +10,7 @@ from pytfl.utils import logging
 logger = logging.getLogger(__name__)
 
 
-class TubeDao:
+class Tube:
     def __init__(self):
         self.tfl_api_dao = TflApiDao()
 
@@ -23,7 +23,7 @@ class TubeDao:
             tube_line.tube_stations = tuple(stations)
             routes_dict = self.get_line_route_sequences(tube_line.id, "Regular,Night")
             for service_type in tube_line.service_types:
-                tube_line.__setattr__(service_type.lower() + "_routes", routes_dict[service_type])
+                setattr(tube_line, f"{service_type.lower()}_routes", routes_dict[service_type])
         logger.info("Got %s tube lines from TfL.", len(tube_lines_objects))
         return tuple(tube_lines_objects)
 

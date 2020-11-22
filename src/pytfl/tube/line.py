@@ -1,5 +1,4 @@
 # ^=_ coding: utf-8 _=^
-
 from pytfl import utils
 
 
@@ -19,34 +18,20 @@ class TubeLine:
 
     @staticmethod
     def get_service_type(service_types):
-        name_getter = utils.create_dict_getter("name")
-        service_type_names = map(name_getter, service_types)
-        return tuple(service_type_names)
+        return tuple(service_type["name"] for service_type in service_types)
 
     def __str__(self):
-        return self.name
+        return f"<TubeLine: {self.name}>"
 
     def __repr__(self):
-        repr_str_format = (
-            "TubeLine(name={name}, "
-            "id={id}, "
-            "tube_stations={tube_stations}, "
-            "regular_routes={regular_routes}, "
-            "night_routes={night_routes}, "
-            "line_statuses={line_statuses}, "
-            "disruptions={disruptions}, "
-            "service_types={service_types}, "
-            "mode_name={mode_name})"
+        return (
+            f"TubeLine(name={self.name}, "
+            f"id={self.id,}, "
+            f"tube_stations={self.tube_stations}, "
+            f"regular_routes={self.regular_routes}, "
+            f"night_routes={self.night_routes}, "
+            f"line_statuses={self.line_statuses}, "
+            f"disruptions={self.disruptions}, "
+            f"service_types={self.service_types}, "
+            f"mode_name={self.mode_name})"
         )
-        repr_str = repr_str_format.format(
-            name=self.name,
-            id=self.id,
-            tube_stations=self.tube_stations,
-            regular_routes=self.regular_routes,
-            night_routes=self.night_routes,
-            line_statuses=self.line_statuses,
-            disruptions=self.disruptions,
-            service_types=self.service_types,
-            mode_name=self.mode_name,
-        )
-        return repr_str

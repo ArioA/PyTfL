@@ -15,26 +15,17 @@ class TubeRoute:
         self.mode = initialising_dict["mode"]
 
     def __str__(self):
-        return self.name
+        return f"<TubeRoute: {self.name}>"
 
     def __repr__(self):
-        repr_str_format = (
-            "TubeRoute(name={name}, "
-            "station_id_route_sequence={station_id_route_sequence}, "
-            "service_type={service_type}, "
-            "line_id={line_id}, "
-            "line_name={line_name}, "
-            "mode={mode})"
+        return (
+            f"TubeRoute(name={self.name}, "
+            f"station_id_route_sequence={self.station_id_route_sequence}, "
+            f"service_type={self.service_type}, "
+            f"line_id={self.line_id}, "
+            f"line_name={self.line_name}, "
+            f"mode={self.mode})"
         )
-        repr_str = repr_str_format.format(
-            name=self.name,
-            station_id_route_sequence=self.station_id_route_sequence,
-            service_type=self.service_type,
-            line_id=self.line_id,
-            line_name=self.line_name,
-            mode=self.mode,
-        )
-        return repr_str
 
     def __len__(self):
         return len(self.station_id_route_sequence)

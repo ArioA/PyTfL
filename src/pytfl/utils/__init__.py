@@ -26,6 +26,4 @@ def create_initialising_dict(api_dict, kwargs_dict):
         A dictionary of values to be used to initialise a class. The values are such that the values present in
         kwargs_dict override those found in api_dict.
     """
-    initialising_dict = api_dict.copy()
-    initialising_dict.update(kwargs_dict)
-    return initialising_dict
+    return {**api_dict, **kwargs_dict}

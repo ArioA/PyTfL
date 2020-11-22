@@ -15,25 +15,15 @@ class TubeStation:
         self.children = []  # TODO: add children
 
     def __str__(self):
-        return self.name
+        return f"<TubeStation: {self.name}>"
 
     def __repr__(self):
-        repr_str_format = (
-            "TubeStation(name={name}, "
-            "id={id}, "
-            "lat={lat}, "
-            "lon={lon}, "
-            "naptan_stop_type={naptan_stop_type}, "
-            "additional_properties={additional_properties}, "
-            "children={children})"
+        return (
+            f"TubeStation(name={self.name}, "
+            f"id={self.id}, "
+            f"lat={self.lat}, "
+            f"lon={self.lon}, "
+            f"naptan_stop_type={self.naptan_stop_type}, "
+            f"additional_properties={self.additional_properties}, "
+            f"children={self.children})"
         )
-        repr_str = repr_str_format.format(
-            name=self.name,
-            id=self.id,
-            lat=self.lat,
-            lon=self.lon,
-            naptan_stop_type=self.naptan_stop_type,
-            additional_properties=self.additional_properties,
-            children=self.children,
-        )
-        return repr_str

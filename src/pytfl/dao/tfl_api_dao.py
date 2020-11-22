@@ -1,4 +1,6 @@
 # ^=_ coding: utf-8 _=^
+from urllib import parse
+
 import requests
 
 from pytfl.utils.config import PyTYfLConfig
@@ -9,12 +11,15 @@ logger = logging.getLogger(__name__)
 
 
 class TflApiDao:
+    tfl_api_url = "https://api.tfl.gov.uk"
+    tube_line_mode = "tube"
+
     def __init__(self):
         self.config = PyTYfLConfig()
 
     def get_response_from_endpoint(self, endpoint, payload):
         payload = self._create_payload(payload)
-        full_url = self.config.get_full_endpoint_url(endpoint)
+        full_url = self.get_full_endpoint_url(endpoint)
         logger.info("Sending GET request to %s", full_url)
         response = requests.get(full_url, params=payload)
         return response
@@ -36,8 +41,7 @@ class TflApiDao:
             If the parameter ``payload`` has keys 'app_id' or 'app_key' (or both) then
             these will override the values derived from the PyTfl.conf file.
         """
-        credentials_payload = {"app_id": self.config.app_id, "app_key": self.config.app_key}
-        final_payload = credentials_payload.copy()
+        final_payload = {"app_id": self.config.app_id, "app_key": self.config.app_key}
         final_payload.update(payload)
         logger.info("Created payload dict: %s", final_payload)
         return final_payload
@@ -58,24 +62,47 @@ class TflApiDao:
         return contents
 
     def get_single_line_stations(self, line_id):
-        single_line_station_endpoint = self.config.get_single_line_stations_endpoint(line_id)
+        single_line_station_endpoint = self.get_single_line_stations_endpoint(line_id)
         all_stations_on_line = self.get_contents_from_endpoint(single_line_station_endpoint)
         return all_stations_on_line
 
     def get_all_tube_lines(self):
-        tube_lines_endpoint = self.config.get_tube_lines_endpoint()
+        tube_lines_endpoint = self.get_tube_lines_endpoint()
         all_tube_lines = self.get_contents_from_endpoint(tube_lines_endpoint)
         return all_tube_lines
 
     def get_all_tube_stop_points(self):
-        all_tube_stop_point_endpoints = self.config.get_tube_stop_point_endpoint()
+        all_tube_stop_point_endpoints = self.get_tube_stop_point_endpoint()
         all_tube_stop_points = self.get_contents_from_endpoint(all_tube_stop_point_endpoints)
         return all_tube_stop_points
 
     def get_all_route_station_sequences(self, line_id, service_type="Regular"):
-        line_all_route_sequences_endpoint = self.config.get_line_route_sequence_endpoint(line_id)
+        line_all_route_sequences_endpoint = self.get_line_route_sequence_endpoint(line_id)
         payload = {"serviceTypes": service_type}
         line_all_route_station_sequences = self.get_contents_from_endpoint(
             line_all_route_sequences_endpoint, payload
         )
         return line_all_route_station_sequences
+
+    def get_full_endpoint_url(self, endpoint):
+        return parse.urljoin(self.tfl_api_url, endpoint)
+
+    def get_tube_lines_endpoint(self):
+        return "/".join(
+            ["Line", "Mode", self.tube_line_mode]
+        )
+
+    def get_tube_stop_point_endpoint(self):
+        return "/".join(
+            ["StopPoint", "Mode", self.tube_line_mode]
+        )
+
+    def get_single_line_stations_endpoint(self, line_id):
+        return "/".join(
+            ["Line", line_id, "StopPoints"]
+        )
+
+    def get_line_route_sequence_endpoint(self, line_id, direction="all"):
+        return "/".join(
+            ["Line", line_id, "Route","Sequence", direction]
+        )
