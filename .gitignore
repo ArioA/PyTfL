@@ -6,3 +6,6 @@
 
 # Config file (contains sensitive data) #
 PyTfL.conf
+
+*.egg*
+
