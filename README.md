@@ -14,7 +14,7 @@ To get things up and running, you'll need to:
     - TfL's jargon for describing these keys appears to be inconsistent: 
         - "Primary key" corresponds to `app_id`
         - "Secondary key" to `app_key`
- - Point the app to where this file is located by either:
+ - Point the app to where this file is located by ***either***:
     - Setting the `PYTFL_CONFIG` environment variable to your `PyTfL.cong`'s path
     - Being in the same directory as your `PyTfL.conf` file 
  

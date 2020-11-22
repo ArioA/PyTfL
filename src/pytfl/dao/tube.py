@@ -36,7 +36,9 @@ class Tube:
 
     @property
     def lines(self) -> TubeLines:
-        tube_lines_raw = self.tfl_api_dao.get_all_tube_lines()  # TODO: Call Lines/Mode/tube/Status instead of Line/Mode/tube - the latter is rubbish
+        tube_lines_raw = (
+            self.tfl_api_dao.get_all_tube_lines()
+        )  # TODO: Call Lines/Mode/tube/Status instead of Line/Mode/tube - the latter is rubbish
         tube_lines_objects = [TubeLine(tube_line_dict) for tube_line_dict in tube_lines_raw]
         return TubeLines(tube_lines_objects)
 

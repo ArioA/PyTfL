@@ -22,7 +22,9 @@ class LineDisruption:
             category=response["category"],
             category_description=response["categoryDescription"],
             description=response["description"],
-            created_at=datetime.strptime(response["created"], DT_FMT) if "created" in response else None,
+            created_at=datetime.strptime(response["created"], DT_FMT)
+            if "created" in response
+            else None,
         )
 
 
@@ -53,8 +55,13 @@ class LineStatus:
             status_code=response["statusSeverity"],
             description=response["statusSeverityDescription"],
             reason=response.get("reason"),
-            validity_periods=[ValidityPeriod.from_api_response(period) for period in response.get("validityPeriods", [])],
-            disruption=LineDisruption.from_api_response(response["disruption"]) if "disruption" in response else None
+            validity_periods=[
+                ValidityPeriod.from_api_response(period)
+                for period in response.get("validityPeriods", [])
+            ],
+            disruption=LineDisruption.from_api_response(response["disruption"])
+            if "disruption" in response
+            else None,
         )
 
 

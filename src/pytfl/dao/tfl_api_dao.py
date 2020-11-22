@@ -95,26 +95,16 @@ class TflApiDao:
         return parse.urljoin(self.tfl_api_url, endpoint)
 
     def get_tube_lines_endpoint(self):
-        return "/".join(
-            ["Line", "Mode", self.tube_line_mode]
-        )
+        return "/".join(["Line", "Mode", self.tube_line_mode])
 
     def get_tube_stop_point_endpoint(self):
-        return "/".join(
-            ["StopPoint", "Mode", self.tube_line_mode]
-        )
+        return "/".join(["StopPoint", "Mode", self.tube_line_mode])
 
     def get_single_line_stations_endpoint(self, line_id):
-        return "/".join(
-            ["Line", line_id, "StopPoints"]
-        )
+        return "/".join(["Line", line_id, "StopPoints"])
 
     def get_line_route_sequence_endpoint(self, line_id, direction="all"):
-        return "/".join(
-            ["Line", line_id, "Route","Sequence", direction]
-        )
+        return "/".join(["Line", line_id, "Route", "Sequence", direction])
 
     def get_line_status_endpoint(self, line_id):
-        return "/".join(
-            ["Line", line_id, "Status"]
-        )
+        return "/".join(["Line", line_id, "Status"])
