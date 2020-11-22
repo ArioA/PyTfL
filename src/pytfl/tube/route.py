@@ -6,6 +6,8 @@ from pytfl import utils
 
 class TubeRoute:
     def __init__(self, tuberoute_dict, **kwargs):
+        self._raw = tuberoute_dict
+
         initialising_dict = utils.create_initialising_dict(tuberoute_dict, kwargs)
         self.name = html.unescape(initialising_dict["name"])
         self.station_id_route_sequence = initialising_dict["naptanIds"]

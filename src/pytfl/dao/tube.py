@@ -1,5 +1,6 @@
 # ^=_ coding: utf-8 _=^
-from collections import defaultdict
+from collections import defaultdict, abc
+from typing import List
 
 from pytfl.dao.tfl_api_dao import TflApiDao
 from pytfl.tube.line import TubeLine
@@ -10,22 +11,44 @@ from pytfl.utils import logging
 logger = logging.getLogger(__name__)
 
 
+def line_name_to_attr(line: str) -> str:
+    return line.replace(" & ", "_").lower()
+
+
+class TubeLines(abc.Sequence):
+    def __init__(self, tubelines: List[TubeLine]):
+        self._tubelines = tubelines
+        for line in tubelines:
+            attr = line_name_to_attr(line.name)
+            setattr(self, attr, line)
+
+    def __len__(self):
+        return len(self._tubelines)
+
+    def __getitem__(self, item):
+        return self._tubelines[item]
+
+
 class Tube:
     def __init__(self):
         self.tfl_api_dao = TflApiDao()
 
-    def get_all_tube_lines(self):
-        logger.info("Getting all tube lines from TfL.")
+    @property
+    def lines(self) -> TubeLines:
         tube_lines_raw = self.tfl_api_dao.get_all_tube_lines()
         tube_lines_objects = [TubeLine(tube_line_dict) for tube_line_dict in tube_lines_raw]
-        for tube_line in tube_lines_objects:
+        return TubeLines(tube_lines_objects)
+
+    def get_all_tube_lines(self):
+        tubelines = self.lines
+        for tube_line in tubelines:
             stations = self.get_tube_line_stations(tube_line.id)
             tube_line.tube_stations = tuple(stations)
             routes_dict = self.get_line_route_sequences(tube_line.id, "Regular,Night")
             for service_type in tube_line.service_types:
                 setattr(tube_line, f"{service_type.lower()}_routes", routes_dict[service_type])
-        logger.info("Got %s tube lines from TfL.", len(tube_lines_objects))
-        return tuple(tube_lines_objects)
+        logger.info("Got %s tube lines from TfL.", len(tubelines))
+        return tubelines
 
     def get_tube_line_stations(self, line_id):
         logger.info("Getting all stations for tube line with ID: %s", line_id)

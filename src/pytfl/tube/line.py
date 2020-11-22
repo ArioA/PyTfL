@@ -1,9 +1,36 @@
 # ^=_ coding: utf-8 _=^
+import dataclasses
+from datetime import datetime
+from typing import List, NamedTuple
+
 from pytfl import utils
+from pytfl.dao.tfl_api_dao import TflApiDao
+
+@dataclasses.dataclass(frozen=True)
+class LineDisruption:
+    category: str
+    category_description: str
+    description: str
+    created_at: datetime
+
+
+class ValidityPeriod(NamedTuple):
+    start: datetime
+    end: datetime
+
+
+@dataclasses.dataclass(frozen=True)
+class LineStatus:
+    status_code: int
+    description: str
+    reason: str
+    validity_periods: List[ValidityPeriod]
+    disruption: LineDisruption
 
 
 class TubeLine:
     def __init__(self, tubeline_dict, **kwargs):
+        self._raw = tubeline_dict
         initialising_dict = utils.create_initialising_dict(tubeline_dict, kwargs)
 
         self.name = initialising_dict["name"]
@@ -15,6 +42,21 @@ class TubeLine:
         self.tube_stations = []
         self.regular_routes = []
         self.night_routes = []
+
+        self._statuses = None
+
+    @property
+    def statuses(self):
+        if self._statuses is None:
+            self.refresh_statuses()
+        return self._statuses
+
+    def refresh_statuses(self):
+        self._statuses = self._get_statuses()
+
+    def _get_statuses(self) -> List[LineStatus]:
+        dao = TflApiDao()
+
 
     @staticmethod
     def get_service_type(service_types):

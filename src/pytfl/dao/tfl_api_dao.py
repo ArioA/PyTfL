@@ -67,6 +67,7 @@ class TflApiDao:
         return all_stations_on_line
 
     def get_all_tube_lines(self):
+        logger.info("Getting all tube lines from TfL.")
         tube_lines_endpoint = self.get_tube_lines_endpoint()
         all_tube_lines = self.get_contents_from_endpoint(tube_lines_endpoint)
         return all_tube_lines
@@ -83,6 +84,11 @@ class TflApiDao:
             line_all_route_sequences_endpoint, payload
         )
         return line_all_route_station_sequences
+
+    def get_line_status(self, line_id, detail=True):
+        endpoint = self.get_line_status_endpoint(line_id)
+        payload = {"detail": detail}
+        return self.get_contents_from_endpoint(endpoint, payload)
 
     def get_full_endpoint_url(self, endpoint):
         return parse.urljoin(self.tfl_api_url, endpoint)
@@ -105,4 +111,9 @@ class TflApiDao:
     def get_line_route_sequence_endpoint(self, line_id, direction="all"):
         return "/".join(
             ["Line", line_id, "Route","Sequence", direction]
+        )
+
+    def get_line_status_endpoint(self, line_id):
+        return "/".join(
+            ["Line", line_id, "Status"]
         )

@@ -4,6 +4,7 @@ from pytfl import utils
 
 class TubeStation:
     def __init__(self, tube_station_dict, **kwargs):
+        self._raw = tube_station_dict
         initialising_dict = utils.create_initialising_dict(tube_station_dict, kwargs)
 
         self.name = initialising_dict["commonName"]

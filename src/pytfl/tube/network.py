@@ -1,7 +1,7 @@
 # ^=_ coding: utf-8 _=^
 
 from pytfl.utils import logging
-from pytfl.dao.tubedao import Tube
+from pytfl.dao.tube import Tube
 
 logger = logging.getLogger(__name__)
 
