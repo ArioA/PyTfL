@@ -42,6 +42,8 @@ TfL's tube network.
     - [ ] Concourses (NaptanMetroAccessArea)
 - [x] TubeRoute class
     - [x] Basic TubeRoute class
+- [ ] Other
+    - [ ] Enums for `direction` and `service_type`
 
 ## Further Information -
 

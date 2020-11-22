@@ -13,3 +13,5 @@ PyTfL.conf
 # Vim swp files
 *.swp
 
+# Jupyter Notebooks
+*.ipynb
