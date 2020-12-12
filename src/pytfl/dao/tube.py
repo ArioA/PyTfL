@@ -23,6 +23,7 @@ class TubeLines(abc.Sequence):
     >>> tubelines = Tube().lines
     >>> northern_line = tubelines.northern
     """
+
     def __init__(self, tubelines: List[TubeLine]):
         self._tubelines = tubelines
         for line in tubelines:

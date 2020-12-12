@@ -52,9 +52,19 @@ class TflApiDao:
             logger.info("Got response %s from URL: %s", response.status_code, response.url)
             return response.json()
         else:
-            logger.info("Non-success response: %s from URL: %s", response.status_code, response.url)
+            try:
+                response.raise_for_status()
+            except requests.exceptions.RequestException:
+                logger.exception(
+                    "Non-success response: %s from URL: %s", response.status_code, response.url
+                )
+            else:
+                logger.warning(
+                    "Odd response from server", status=response.status_code, url=response.url
+                )
+            return None
 
-    def get_contents_from_endpoint(self, endpoint, payload=None):
+    def query_endpoint(self, endpoint, payload=None):
         if payload is None:
             payload = {}
         response = self.get_response_from_endpoint(endpoint, payload)
@@ -63,24 +73,24 @@ class TflApiDao:
 
     def get_single_line_stations(self, line_id):
         single_line_station_endpoint = self.get_single_line_stations_endpoint(line_id)
-        all_stations_on_line = self.get_contents_from_endpoint(single_line_station_endpoint)
+        all_stations_on_line = self.query_endpoint(single_line_station_endpoint)
         return all_stations_on_line
 
     def get_all_tube_lines(self):
         logger.info("Getting all tube lines from TfL.")
         tube_lines_endpoint = self.get_tube_lines_endpoint()
-        all_tube_lines = self.get_contents_from_endpoint(tube_lines_endpoint)
+        all_tube_lines = self.query_endpoint(tube_lines_endpoint)
         return all_tube_lines
 
     def get_all_tube_stop_points(self):
         all_tube_stop_point_endpoints = self.get_tube_stop_point_endpoint()
-        all_tube_stop_points = self.get_contents_from_endpoint(all_tube_stop_point_endpoints)
+        all_tube_stop_points = self.query_endpoint(all_tube_stop_point_endpoints)
         return all_tube_stop_points
 
     def get_all_route_station_sequences(self, line_id, service_type="Regular"):
         line_all_route_sequences_endpoint = self.get_line_route_sequence_endpoint(line_id)
         payload = {"serviceTypes": service_type}
-        line_all_route_station_sequences = self.get_contents_from_endpoint(
+        line_all_route_station_sequences = self.query_endpoint(
             line_all_route_sequences_endpoint, payload
         )
         return line_all_route_station_sequences
@@ -89,7 +99,7 @@ class TflApiDao:
     def get_line_status(self, line_id, detail=False):
         endpoint = self.get_line_status_endpoint(line_id)
         payload = {"detail": detail}
-        return self.get_contents_from_endpoint(endpoint, payload)
+        return self.query_endpoint(endpoint, payload)
 
     def get_full_endpoint_url(self, endpoint):
         return parse.urljoin(self.tfl_api_url, endpoint)
