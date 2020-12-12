@@ -5,6 +5,7 @@ from typing import List, NamedTuple, Optional
 
 from pytfl import utils
 from pytfl.dao.tfl_api_dao import TflApiDao
+from pytfl.tube.station import TubeStation
 
 DT_FMT = "%Y-%m-%dT%H:%M:%S%z"
 
@@ -76,17 +77,27 @@ class TubeLine:
         self.disruptions = initialising_dict["disruptions"]
         self.service_types = self.get_service_type(initialising_dict["serviceTypes"])
         self.mode_name = initialising_dict.get("modeName", "tube")
-        self.tube_stations = []
+        # TODO
         self.regular_routes = []
         self.night_routes = []
 
         self._statuses = None
+        self._stations = None
 
     @property
     def statuses(self):
         if self._statuses is None:
             self.refresh_statuses()
         return self._statuses
+
+    @property
+    def stations(self):
+        if self._stations is None:
+            dao = TflApiDao()
+            self._stations = [
+                TubeStation(raw_station) for raw_station in dao.get_single_line_stations(self.id)
+            ]
+        return self._stations
 
     def refresh_statuses(self):
         self._statuses = self._get_statuses()
